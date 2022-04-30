@@ -5,8 +5,11 @@ import { Divider, Layout, Menu, Result, Typography } from "antd";
 import ProCard from "@ant-design/pro-card";
 import SearchPolicy from "../../components/SearchPolicy.component";
 import ResultPolicies from "../../components/ResultPolicies.component";
-const { Header, Content, Footer } = Layout;
-const menuItems = ["Home", "Dashboard"];
+const { Header, Footer } = Layout;
+const menuItems = [
+  { label: "Home", href: "/", key: "1" },
+  { label: "Dashboard", href: "/dashboard", key: "2" },
+];
 const { Title } = Typography;
 
 export default () => {
@@ -28,10 +31,7 @@ export default () => {
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={["1"]}
-          items={menuItems.map((ele, index) => ({
-            key: String(index + 1),
-            label: ele,
-          }))}
+          items={menuItems}
         />
       </Header>
       <Divider />
