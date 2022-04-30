@@ -15,6 +15,7 @@ import {
 
 import React, { useState } from "react";
 const { Option } = Select;
+const hostLink = "http://localhost:3000";
 
 const SearchPolicy = ({ policyHandler }) => {
   const [form] = Form.useForm();
@@ -22,7 +23,6 @@ const SearchPolicy = ({ policyHandler }) => {
   const onFinish = (values) => {
     const key = "updatable";
     message.loading({ content: "Loading...", key });
-    const hostLink = "http://localhost:3000";
     const resourceLink = `/policy/${values.IdType}/${values.id}`;
     const targetLink = hostLink + resourceLink;
     fetch(targetLink, { method: "GET" })
