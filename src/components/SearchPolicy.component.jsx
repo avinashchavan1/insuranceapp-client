@@ -10,16 +10,39 @@ import {
   Select,
   Button,
   Input,
+  message,
 } from "antd";
 
-import React from "react";
+import React, { useState } from "react";
 const { Option } = Select;
-const onFinish = (values) => {
-  console.log(values);
-};
 
-const SearchPolicy = () => {
+const SearchPolicy = ({ policyHandler }) => {
   const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    const key = "updatable";
+    message.loading({ content: "Loading...", key });
+    const hostLink = "http://localhost:3000";
+    const resourceLink = `/policy/${values.IdType}/${values.id}`;
+    const targetLink = hostLink + resourceLink;
+    fetch(targetLink, { method: "GET" })
+      .then((response) => {
+        if (response.status === 200) {
+          message.success({ content: "Loaded!", key, duration: 2 });
+        } else {
+          message.error({ content: "User not found!", key, duration: 2 });
+        }
+        return response.json();
+      })
+      .then((result) => {
+        console.log(result);
+        policyHandler(result);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+    console.log(targetLink);
+  };
   return (
     <Form form={form} onFinish={onFinish} name="control-ref">
       <Divider />
