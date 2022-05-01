@@ -1,37 +1,21 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import "./index.css";
-import { Divider, Layout, Menu, Typography, Form, DatePicker } from "antd";
+import { Divider, Typography, Form } from "antd";
 import ProCard from "@ant-design/pro-card";
 
 import { Row, Button, Input, message, Col, Select, Descriptions } from "antd";
+import UserLayoutLayout from "../../layouts/UserLayout.layout";
 
 const { Option } = Select;
 // const hostLink = "http://localhost:3000";
 const hostLink = "https://insurance-backend-avinash.herokuapp.com";
 
-const { Header, Footer } = Layout;
-const menuItems = ["Home", "Dashboard"];
 const { Title } = Typography;
 const PolicyUpdate = () => {
   const { id } = useParams();
   const [form] = Form.useForm();
-
-  const navigate = useNavigate();
-  const clickHandler = (event) => {
-    console.log("clicked", event.key);
-    navigate(event.key);
-  };
-  const menuItems = [
-    { label: "Home", key: "/", onClick: clickHandler, value: "/" },
-    {
-      label: "Dashboard",
-      key: "/dashboard",
-      onClick: clickHandler,
-      value: "/dashboard",
-    },
-  ];
 
   const [policyDetails, setPolicyDetails] = useState({});
   useEffect(() => {
@@ -76,22 +60,7 @@ const PolicyUpdate = () => {
       .catch((error) => console.log("error", error));
   };
   return (
-    <Layout>
-      <Header
-        style={{
-          zIndex: 1,
-          width: "100%",
-        }}
-      >
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["/"]}
-          items={menuItems}
-        />
-      </Header>
-
+    <UserLayoutLayout>
       <ProCard.Group
         title={<Title level={2}>{`Update Policy`}</Title>}
         bordered
@@ -299,16 +268,7 @@ const PolicyUpdate = () => {
           </Form>
         </ProCard>
       </ProCard.Group>
-      <Divider />
-
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Insurance Analytics ©2022 Created by Avinash Chavan
-      </Footer>
-    </Layout>
+    </UserLayoutLayout>
   );
 };
 

@@ -1,19 +1,6 @@
-import ProCard from "@ant-design/pro-card";
-import {
-  Divider,
-  Row,
-  Switch,
-  Typography,
-  Col,
-  Badge,
-  Form,
-  Select,
-  Button,
-  Input,
-  message,
-} from "antd";
+import { Divider, Row, Col, Form, Select, Button, Input, message } from "antd";
 
-import React, { useState } from "react";
+import React from "react";
 const { Option } = Select;
 // const hostLink = "http://localhost:3000";
 const hostLink = "https://insurance-backend-avinash.herokuapp.com";

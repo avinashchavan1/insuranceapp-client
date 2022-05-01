@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import "antd/dist/antd.css";
 import "./index.css";
-import { Divider, Layout, Menu, Result, Typography } from "antd";
+import { Divider, Typography } from "antd";
 import ProCard from "@ant-design/pro-card";
 import SearchPolicy from "../../components/SearchPolicy.component";
 import ResultPolicies from "../../components/ResultPolicies.component";
-import { useNavigate } from "react-router-dom";
-const { Header, Footer } = Layout;
-const menuItems = [
-  { label: "Home", href: "/", key: "1" },
-  { label: "Dashboard", href: "/dashboard", key: "2" },
-];
+import UserLayoutLayout from "../../layouts/UserLayout.layout";
+
 const { Title } = Typography;
 export default () => {
   const [policies, setPolicies] = useState([]);
@@ -18,38 +14,9 @@ export default () => {
     setPolicies(policies);
     console.log("from landing page");
   };
-  const navigate = useNavigate();
-  const clickHandler = (event) => {
-    console.log("clicked", event.key);
-    navigate(event.key);
-  };
-  const menuItems = [
-    { label: "Home", key: "/", onClick: clickHandler, value: "/" },
-    {
-      label: "Dashboard",
-      key: "/dashboard",
-      onClick: clickHandler,
-      value: "/dashboard",
-    },
-  ];
-  return (
-    <Layout>
-      <Header
-        style={{
-          zIndex: 1,
-          width: "100%",
-        }}
-      >
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["/"]}
-          items={menuItems}
-        />
-      </Header>
-      <Divider />
 
+  return (
+    <UserLayoutLayout>
       <ProCard.Group
         title={<Title level={2}>Search Policy</Title>}
         bordered
@@ -80,14 +47,6 @@ export default () => {
         </ProCard>
       </ProCard.Group>
       <Divider />
-
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Insurance Analytics ©2022 Created by Avinash Chavan
-      </Footer>
-    </Layout>
+    </UserLayoutLayout>
   );
 };

@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./index.css";
-import {
-  Divider,
-  Layout,
-  Menu,
-  Typography,
-  Form,
-  Row,
-  Col,
-  Select,
-  message,
-} from "antd";
+import { Divider, Typography, Form, Row, Col, Select, message } from "antd";
 import ProCard from "@ant-design/pro-card";
 import { Line } from "@ant-design/plots";
-import { useNavigate } from "react-router-dom";
-const { Header, Footer } = Layout;
+import UserLayoutLayout from "../../layouts/UserLayout.layout";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -27,20 +16,6 @@ const Dashboard = () => {
   const [data, setData] = useState([]);
   const [form] = Form.useForm();
   const [region, setRegion] = useState("all");
-  const navigate = useNavigate();
-  const clickHandler = (event) => {
-    console.log("clicked", event.key);
-    navigate(event.key);
-  };
-  const menuItems = [
-    { label: "Home", key: "/", onClick: clickHandler, value: "/" },
-    {
-      label: "Dashboard",
-      key: "/dashboard",
-      onClick: clickHandler,
-      value: "/dashboard",
-    },
-  ];
 
   useEffect(() => {
     message.loading({ content: "Loading data...", key });
@@ -73,24 +48,7 @@ const Dashboard = () => {
     setRegion(value);
   };
   return (
-    <Layout>
-      <Header
-        style={{
-          zIndex: 1,
-          width: "100%",
-        }}
-      >
-        <div className="logo" />
-        {/* <img src="/logo2.png" alt="logo" className="logo" /> */}
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["/dashboard"]}
-          items={menuItems}
-        />
-      </Header>
-      <Divider />
-
+    <UserLayoutLayout>
       <ProCard.Group
         title={<Title level={2}>Dashboard</Title>}
         bordered
@@ -135,16 +93,7 @@ const Dashboard = () => {
           <Line {...config} />
         </ProCard>
       </ProCard.Group>
-      <Divider />
-
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Insurance Analytics ©2022 Created by Avinash Chavan
-      </Footer>
-    </Layout>
+    </UserLayoutLayout>
   );
 };
 export default Dashboard;
