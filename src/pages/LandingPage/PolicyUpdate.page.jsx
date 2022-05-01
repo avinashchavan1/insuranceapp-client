@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import "./index.css";
@@ -15,6 +15,21 @@ const { Title } = Typography;
 const PolicyUpdate = () => {
   const { id } = useParams();
   const [form] = Form.useForm();
+
+  const navigate = useNavigate();
+  const clickHandler = (event) => {
+    console.log("clicked", event.key);
+    navigate(event.key);
+  };
+  const menuItems = [
+    { label: "Home", key: "/", onClick: clickHandler, value: "/" },
+    {
+      label: "Dashboard",
+      key: "/dashboard",
+      onClick: clickHandler,
+      value: "/dashboard",
+    },
+  ];
 
   const [policyDetails, setPolicyDetails] = useState({});
   useEffect(() => {
@@ -70,11 +85,8 @@ const PolicyUpdate = () => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["1"]}
-          items={menuItems.map((ele, index) => ({
-            key: String(index + 1),
-            label: ele,
-          }))}
+          defaultSelectedKeys={["/"]}
+          items={menuItems}
         />
       </Header>
 

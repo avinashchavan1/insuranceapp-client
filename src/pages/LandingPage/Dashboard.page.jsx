@@ -25,19 +25,20 @@ const Dashboard = () => {
   const [form] = Form.useForm();
   const [region, setRegion] = useState("all");
   const navigate = useNavigate();
-  const clickHandler = (path) => {
-    console.log("clicked", path);
-    navigate("/");
+  const clickHandler = (event) => {
+    console.log("clicked", event.key);
+    navigate(event.key);
   };
   const menuItems = [
-    { label: "Home", key: "1", onClick: clickHandler, value: "/" },
+    { label: "Home", key: "/", onClick: clickHandler, value: "/" },
     {
       label: "Dashboard",
-      key: "2",
+      key: "/dashboard",
       onClick: clickHandler,
       value: "/dashboard",
     },
   ];
+
   useEffect(() => {
     form.setFieldsValue({ region: region });
     asyncFetch();
@@ -77,7 +78,7 @@ const Dashboard = () => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["/dashboard"]}
           items={menuItems}
         />
       </Header>
@@ -116,7 +117,7 @@ const Dashboard = () => {
         </ProCard>
         <Divider />
         <ProCard
-          title={<Title level={3}>Line Chart</Title>}
+          title={<Title level={3}>{`Line Chart`}</Title>}
           bordered
           style={{
             backgroundColor: "white",
