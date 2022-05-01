@@ -3,8 +3,8 @@ import "antd/dist/antd.css";
 import "./index.css";
 import { Divider, Layout, Menu } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
+import logo from "../images/logo.png";
 const { Header, Footer } = Layout;
-
 export default (props) => {
   const navigate = useNavigate();
   const clickHandler = (event) => {
@@ -34,7 +34,7 @@ export default (props) => {
         {/* <div className="logo" /> */}
         <a>
           <img
-            src="./final-logo.png"
+            src={logo}
             alt="Logo"
             className="logo"
             onClick={clickHandler}
