@@ -7,6 +7,7 @@ import PolicyUpdate from "./pages/LandingPage/PolicyUpdate.page";
 import Dashboard from "./pages/LandingPage/Dashboard.page";
 
 function App() {
+  process.env.CI = false;
   return (
     <Router>
       <Routes>
