@@ -11,8 +11,12 @@ const { Title } = Typography;
 export default () => {
   const [policies, setPolicies] = useState([]);
   const policyHandler = (policies) => {
-    setPolicies(policies);
-    console.log("from landing page");
+    const addKeys = policies.map((ele, i) => {
+      const newKeyElement = { ...ele, key: i };
+      return newKeyElement;
+    });
+    setPolicies(addKeys);
+    console.log("updating policies state from landing page");
   };
 
   return (
