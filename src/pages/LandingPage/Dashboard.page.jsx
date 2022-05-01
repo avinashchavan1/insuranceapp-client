@@ -13,11 +13,8 @@ import {
 } from "antd";
 import ProCard from "@ant-design/pro-card";
 import { Line } from "@ant-design/plots";
+import { useNavigate } from "react-router-dom";
 const { Header, Footer } = Layout;
-const menuItems = [
-  { label: "Home", href: "/", key: "1" },
-  { label: "Dashboard", href: "/dashboard", key: "2" },
-];
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -27,6 +24,20 @@ const Dashboard = () => {
   const [data, setData] = useState([]);
   const [form] = Form.useForm();
   const [region, setRegion] = useState("all");
+  const navigate = useNavigate();
+  const clickHandler = (path) => {
+    console.log("clicked", path);
+    navigate("/");
+  };
+  const menuItems = [
+    { label: "Home", key: "1", onClick: clickHandler, value: "/" },
+    {
+      label: "Dashboard",
+      key: "2",
+      onClick: clickHandler,
+      value: "/dashboard",
+    },
+  ];
   useEffect(() => {
     form.setFieldsValue({ region: region });
     asyncFetch();
@@ -62,6 +73,7 @@ const Dashboard = () => {
         }}
       >
         <div className="logo" />
+        {/* <img src="/logo2.png" alt="logo" className="logo" /> */}
         <Menu
           theme="dark"
           mode="horizontal"
