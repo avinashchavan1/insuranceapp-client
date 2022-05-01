@@ -27,14 +27,18 @@ const SearchPolicy = ({ policyHandler }) => {
     const targetLink = hostLink + resourceLink;
     fetch(targetLink, { method: "GET" })
       .then((response) => {
-        if (response.status === 200) {
-          message.success({ content: "Loaded!", key, duration: 2 });
-        } else {
-          message.error({ content: "User not found!", key, duration: 2 });
-        }
         return response.json();
       })
       .then((result) => {
+        if (result.length > 0) {
+          message.success({
+            content: `${result.length} Policies Loaded!`,
+            key,
+            duration: 3,
+          });
+        } else {
+          message.warning({ content: "No Policies  found", key, duration: 3 });
+        }
         console.log(result);
         policyHandler(result);
       })
