@@ -1,9 +1,9 @@
 .logo {
   float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.2);
+  width: 132px;
+  height: 37px;
+  margin: 2vh 4vw 2vh 0vh;
+  background: rgba(255, 255, 255, 0);
 }
 
 [data-theme="dark"] .site-layout .site-layout-background {

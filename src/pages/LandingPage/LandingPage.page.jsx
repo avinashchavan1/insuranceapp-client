@@ -46,7 +46,6 @@ export default () => {
           <ResultPolicies policies={policies} />
         </ProCard>
       </ProCard.Group>
-      <Divider />
     </UserLayoutLayout>
   );
 };

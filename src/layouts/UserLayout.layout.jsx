@@ -2,15 +2,18 @@ import React from "react";
 import "antd/dist/antd.css";
 import "./index.css";
 import { Divider, Layout, Menu } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const { Header, Footer } = Layout;
 
 export default (props) => {
   const navigate = useNavigate();
   const clickHandler = (event) => {
+    const routePath = event.key === undefined ? "/" : event.key;
     console.log("clicked", event.key);
-    navigate(event.key);
+    navigate(routePath);
   };
+  const location = useLocation();
+  const currentPath = location.pathname === "/dashboard" ? "/dashboard" : "/";
   const menuItems = [
     { label: "Home", key: "/", onClick: clickHandler, value: "/" },
     {
@@ -28,11 +31,20 @@ export default (props) => {
           width: "100%",
         }}
       >
-        <div className="logo" />
+        {/* <div className="logo" /> */}
+        <a>
+          <img
+            src="./final-logo.png"
+            alt="Logo"
+            className="logo"
+            onClick={clickHandler}
+          ></img>
+        </a>
+
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["/"]}
+          defaultSelectedKeys={[currentPath]}
           items={menuItems}
         />
       </Header>
