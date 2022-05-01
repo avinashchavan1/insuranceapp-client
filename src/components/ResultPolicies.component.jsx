@@ -2,7 +2,9 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Table, Button, Space, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-const hostLink = "http://localhost:3000";
+// const hostLink = "http://localhost:3000";
+const hostLink = "https://insurance-backend-avinash.herokuapp.com";
+
 const setupData = (dataRaw) => {
   let datasessions = dataRaw;
   // console.log(dataRaw);

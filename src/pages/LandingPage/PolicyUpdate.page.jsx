@@ -8,7 +8,9 @@ import ProCard from "@ant-design/pro-card";
 import { Row, Button, Input, message, Col, Select, Descriptions } from "antd";
 
 const { Option } = Select;
-const hostLink = "http://localhost:3000";
+// const hostLink = "http://localhost:3000";
+const hostLink = "https://insurance-backend-avinash.herokuapp.com";
+
 const { Header, Footer } = Layout;
 const menuItems = ["Home", "Dashboard"];
 const { Title } = Typography;

@@ -10,6 +10,7 @@ import {
   Row,
   Col,
   Select,
+  message,
 } from "antd";
 import ProCard from "@ant-design/pro-card";
 import { Line } from "@ant-design/plots";
@@ -18,7 +19,9 @@ const { Header, Footer } = Layout;
 
 const { Title } = Typography;
 const { Option } = Select;
-const hostLink = "http://localhost:3000";
+// const hostLink = "http://localhost:3000";
+const hostLink = "https://insurance-backend-avinash.herokuapp.com";
+const key = "updatable";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -40,13 +43,17 @@ const Dashboard = () => {
   ];
 
   useEffect(() => {
+    message.loading({ content: "Loading data...", key });
     form.setFieldsValue({ region: region });
     asyncFetch();
   }, [region]);
   const asyncFetch = () => {
     fetch(`${hostLink}/policy/policies/${region}`)
       .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((json) => {
+        setData(json);
+        message.success({ content: "Success!", key, duration: 2 });
+      })
       .catch((error) => {
         console.log("fetch data failed", error);
       });

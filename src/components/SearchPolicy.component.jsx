@@ -15,7 +15,8 @@ import {
 
 import React, { useState } from "react";
 const { Option } = Select;
-const hostLink = "http://localhost:3000";
+// const hostLink = "http://localhost:3000";
+const hostLink = "https://insurance-backend-avinash.herokuapp.com";
 
 const SearchPolicy = ({ policyHandler }) => {
   const [form] = Form.useForm();
